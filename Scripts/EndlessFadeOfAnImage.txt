@@ -1,0 +1,24 @@
+  #region deneme
+    public UnityEngine.UI.Image img;
+    void Start() { 
+    StartCoroutine(endlessFade());
+    }
+    Color temp = Color.white;
+    IEnumerator endlessFade()
+    {
+        while (true)
+        {
+            yield return StartCoroutine(fadeRoutine(-0.01f));
+            yield return StartCoroutine(fadeRoutine(0.01f));
+
+        }
+    }
+    IEnumerator fadeRoutine(float val)
+    {
+            for (int i = 0; i < 60; i++)
+            {
+                temp = new Color(img.color.a, img.color.a, img.color.a, img.color.a + val);
+                img.color = temp;
+                yield return new WaitForFixedUpdate();
+            }
+    }
